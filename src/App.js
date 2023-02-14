@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import Contents from './components/Contents';
+import Rule from './components/Rule';
 import ThemeButton from './components/ThemeButton';
 
 function App() {
   const [theme, setTheme] = useState("light");
+  const [rule, setRule] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("theme") === "dark") {
@@ -18,11 +21,14 @@ function App() {
       </p>
       
       <div className="w-104 h-128 rounded-2xl mx-auto my-0 shadow-md bg-white dark:bg-dark-white">
-
+        {!rule ? <Contents /> : <Rule />}
       </div>
 
       <div className="w-104 flex justify-between mt-2.5">
-        <button className="h-10 px-3.5 rounded-full shadow-md text-black bg-white dark:bg-dark-white">
+        <button
+          className="h-10 px-3.5 rounded-full shadow-md text-black bg-white dark:bg-dark-white"
+          onClick={() => setRule(!rule)}
+        >
           규칙 보기
         </button>
 
