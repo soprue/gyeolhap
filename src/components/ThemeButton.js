@@ -1,3 +1,5 @@
+import React from 'react';
+
 function ThemeButton({theme, setTheme}) {
   const onChangeTheme = () => {
     if (localStorage.getItem("theme") === "dark") {
@@ -41,4 +43,4 @@ function ThemeButton({theme, setTheme}) {
   );
 }
 
-export default ThemeButton;
+export default React.memo(ThemeButton);
