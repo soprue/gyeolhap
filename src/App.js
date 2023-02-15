@@ -29,7 +29,8 @@ function App() {
           className="h-10 px-3.5 rounded-full shadow-md text-black bg-white dark:bg-dark-white"
           onClick={() => setRule(!rule)}
         >
-          규칙 보기
+          {!rule ? "규칙 보기" : "규칙 닫기"}
+          
         </button>
 
         <ThemeButton theme={theme} setTheme={setTheme} />
