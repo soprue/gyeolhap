@@ -20,11 +20,11 @@ function App() {
         결! 합! 게임
       </p>
       
-      <div className="w-104 h-128 rounded-2xl mx-auto my-0 shadow-md bg-white dark:bg-dark-white">
+      <div className="w-112 h-136 rounded-[10px] mx-auto my-0 shadow-md bg-white dark:bg-dark-white">
         {!rule ? <Contents /> : <Rule />}
       </div>
 
-      <div className="w-104 flex justify-between mt-2.5">
+      <div className="w-112 flex justify-between mt-2.5">
         <button
           className="h-10 px-3.5 rounded-full shadow-md text-black bg-white dark:bg-dark-white"
           onClick={() => setRule(!rule)}

@@ -3,7 +3,11 @@
 /* Firefox */
 * {
     scrollbar-width: thin;
-    scrollbar-color: #eeeeee;
+    scrollbar-color: #eee;
+}
+
+.dark * {
+    scrollbar-color: #ccc;
 }
 
 /* Chrome, Edge, and Safari */
@@ -12,13 +16,20 @@
 }
 
 *::-webkit-scrollbar-track {
-    background: #eeeeee;
+    background: #eee;
     border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
     background-color: #ddd;
     border-radius: 14px;
+}
+
+.dark *::-webkit-scrollbar-track {
+    background: #ccc;
+}
+.dark *::-webkit-scrollbar-thumb {
+    background-color: #aaa;
 }
 
 @tailwind components;
