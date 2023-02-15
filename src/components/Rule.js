@@ -8,7 +8,7 @@ function Rule() {
     <div className="w-full h-full text-left break-keep overflow-y-scroll py-10 px-7">
         '결! 합! 게임'은 9장의 그림 중에서 <span className="font-bold">합</span>을 최대한 찾아내는 게임입니다.
         
-        <hr className="my-8 text-[#eeeeee] dark:text-[#aaaaaa]" />
+        <hr className="my-10 text-[#eeeeee] dark:text-[#aaaaaa]" />
 
         게임에 사용되는 그림은 <span className="font-bold">3가지</span> 속성을 가지고 있습니다.
 
@@ -33,7 +33,7 @@ function Rule() {
             <Circle bgColor="gray" />
         </div>
         
-        <hr className="my-8 text-[#eeeeee] dark:text-[#aaaaaa]" />
+        <hr className="my-10 text-[#eeeeee] dark:text-[#aaaaaa]" />
 
         <span className="font-bold">합</span>은 <span className="font-bold">3가지 속성</span>이 <span className="font-bold">모두 같거나 모두 다른</span> 세 그림을 말합니다.
         <br /><br /><br />
@@ -60,7 +60,7 @@ function Rule() {
         배경색이 <span className="font-bold">모두 같지만</span>, 
         모양이 모두 같거나 모두 달라야 한다는 <span className="underline underline-offset-2">조건을 충족하지 못하기 때문에</span> 합이 아닙니다.
         
-        <hr className="my-8 text-[#eeeeee] dark:text-[#aaaaaa]" />
+        <hr className="my-10 text-[#eeeeee] dark:text-[#aaaaaa]" />
 
         주어진 모양에서 합을 모두 찾은 경우에는 <span className="font-bold">결</span>을 눌러서 다음으로 넘어갈 수 있습니다.
         <br /><br />
