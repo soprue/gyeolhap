@@ -30,7 +30,6 @@ function App() {
           onClick={() => setRule(!rule)}
         >
           {!rule ? "규칙 보기" : "규칙 닫기"}
-          
         </button>
 
         <ThemeButton theme={theme} setTheme={setTheme} />

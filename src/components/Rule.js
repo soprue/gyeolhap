@@ -1,7 +1,7 @@
 import React from 'react'
-import Circle from './figures/Circle';
-import Square from './figures/Square';
-import Triangle from './figures/Triangle';
+import Circle from './Figures/Circle';
+import Square from './Figures/Square';
+import Triangle from './Figures/Triangle';
 
 function Rule() {
   return (
