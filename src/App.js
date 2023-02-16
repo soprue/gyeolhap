@@ -20,8 +20,9 @@ function App() {
         결! 합! 게임
       </p>
       
-      <div className="w-112 h-136 rounded-[10px] mx-auto my-0 shadow-md bg-white dark:bg-dark-white">
-        {!rule ? <Contents /> : <Rule />}
+      <div className="relative w-112 h-136 rounded-[10px] mx-auto my-0 shadow-md bg-white dark:bg-dark-white">
+        <Contents />
+        {rule && <Rule />}
       </div>
 
       <div className="w-112 flex justify-between mt-2.5">

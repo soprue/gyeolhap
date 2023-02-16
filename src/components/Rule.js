@@ -5,7 +5,7 @@ import Triangle from './Figures/Triangle';
 
 function Rule() {
   return (
-    <div className="w-full h-full text-left break-keep overflow-y-scroll py-10 px-7">
+    <div className="absolute inset-0 z-10 w-full h-full overflow-y-scroll py-10 px-7 text-left break-keep bg-white dark:bg-dark-white">
         '결! 합! 게임'은 9장의 그림 중에서 <span className="font-bold">합</span>을 최대한 찾아내는 게임입니다.
         
         <hr className="my-10 text-[#eeeeee] dark:text-[#aaaaaa]" />
