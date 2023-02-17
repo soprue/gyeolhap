@@ -44,7 +44,7 @@ function Game() {
 
   return (
     <div className="absolute inset-0 z-10 w-full h-full py-5 px-5 text-left break-keep bg-white dark:bg-dark-white">
-      <div className="relative w-full h-5 rounded-full overflow-hidden bg-black">
+      <div className="relative w-full h-5 rounded-full overflow-hidden bg-dark-white dark:bg-black">
         <div className="absolute inset-0 bg-[#28c684]" id="bar"></div>
       </div>
 

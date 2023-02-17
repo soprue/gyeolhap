@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center font-GothicA1 text-center text-black bg-[#f8f9fa] dark:bg-black">
+    <div className="w-screen h-screen flex flex-col justify-center items-center font-GothicA1 text-center text-black bg-dark-white dark:bg-black">
       <p className="text-4xl mb-5 font-bold	dark:text-dark-white">
         결! 합! 게임
       </p>
