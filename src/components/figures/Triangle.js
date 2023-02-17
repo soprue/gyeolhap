@@ -6,7 +6,7 @@ function Triangle({size = 50, color, bgColor = "white"}) {
     let point = `${size / 2},0 0,${size} ${size},${size}`;
 
     return (
-        <div className="p-5 m-1 shadow-inner" style={{ backgroundColor: backColor }}>
+        <div className="p-5 m-1 shadow-inner float-left" style={{ backgroundColor: backColor }}>
             <svg width={size} height={size}>
                 <polygon points={point} fill={fillColor} />
             </svg>

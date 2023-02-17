@@ -5,7 +5,7 @@ function Square({size = 50, color, bgColor = "white"}) {
     let backColor = bgColor === "white" ? "#ffffff" : bgColor === "black" ? "#121212" : "#aaaaaa"
 
     return (
-        <div className="p-5 m-1 shadow-inner" style={{ backgroundColor: backColor }}>
+        <div className="p-5 m-1 shadow-inner float-left" style={{ backgroundColor: backColor }}>
             <svg width={size} height={size}>
                 <rect width={size} height={size} fill={fillColor} />
             </svg>

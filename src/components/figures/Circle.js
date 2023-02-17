@@ -6,7 +6,7 @@ function Circle({size = 50, color, bgColor = "white"}) {
     let radius = size / 2;
 
     return (
-        <div className="p-5 m-1 shadow-inner" style={{ backgroundColor: backColor }}>
+        <div className="p-5 m-1 shadow-inner float-left" style={{ backgroundColor: backColor }}>
             <svg width={size} height={size}>
                 <circle cx={radius} cy={radius} r={radius} fill={fillColor} />
             </svg>
