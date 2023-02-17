@@ -6,16 +6,33 @@ module.exports = {
   theme: {
     colors: {
       'black': '#121212',
-      'white': 'rgba(255, 255, 255, 1)',
-      'yellow': 'rgba(255, 238, 88, 1)',
-      'green': 'rgba(102, 187, 106, 1)',
-      'blue': 'rgba(66, 165, 245, 1)',
-      'darkWhite': 'rgba(255, 255, 255, 0.87)',
-      'darkYellow': 'rgba(255, 238, 88, 0.87)',
-      'darkGreen': 'rgba(102, 187, 106, 0.87)',
-      'darkBlue': 'rgba(66, 165, 245, 0.87)',
+      'white': '#FFFFFF',
+      'dark': {
+        'white': '#F8F9FA',
+      }
     },
+    extend: {
+      width: {
+        '104': '26rem',
+        '112': '28rem',
+      },
+      height: {
+        '104': '26rem',
+        '112': '28rem',
+        '120': '30rem',
+        '128': '32rem',
+        '136': '34rem',
+      },
+      boxShadow: {
+        'startButton': '0 3px 0 #121212',
+        'startButtonHover': '0 7px 0 #121212',
+      }
+    },
+    fontFamily: {
+      'GothicA1': 'Gothic A1',
+    }
   },
-  plugins: [],
+  plugins: [
+  ],
   darkMode: 'class',
 }
