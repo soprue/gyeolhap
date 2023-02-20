@@ -1,15 +1,15 @@
 import React from 'react'
 
-function Square({size = 50, color, bgColor = "white"}) {
+function Square({size = 50, color, bgColor, index}) {
     let fillColor = color === "yellow" ? "#ffee58" : color === "green" ? "#66bb6a" : "#42a5f5";
-    let backColor = bgColor === "white" ? "#ffffff" : bgColor === "black" ? "#121212" : "#aaaaaa"
+    let backColor = bgColor === "gray" ? "#aaaaaa" : bgColor === "black" ? "#121212" : "#ffffff"
 
     return (
-        <div className="p-5 m-1 shadow-inner float-left" style={{ backgroundColor: backColor }}>
-            <svg width={size} height={size}>
+        <button className="p-5 m-1 shadow-inner float-left" style={{ backgroundColor: backColor }} data-type={index}>
+            <svg width={size} height={size} className="my-0 mx-auto">
                 <rect width={size} height={size} fill={fillColor} />
             </svg>
-        </div>
+        </button>
     )
 }
 
