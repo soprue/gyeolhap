@@ -2,7 +2,7 @@ import React from 'react'
 
 function Circle({size = 50, color, bgColor, index, onClick}) {
     let fillColor = color === "yellow" ? "#ffee58" : color === "green" ? "#66bb6a" : "#42a5f5";
-    let backColor = bgColor === "gray" ? "#aaaaaa" : bgColor === "black" ? "#121212" : "#ffffff"
+    let backColor = bgColor === "gray" ? "#C5C5C5" : bgColor === "black" ? "#121212" : "#ffffff"
     let radius = size / 2;
 
     return (

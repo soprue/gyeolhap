@@ -18,14 +18,13 @@ module.exports = {
       },
       height: {
         '104': '26rem',
-        '112': '28rem',
-        '120': '30rem',
-        '128': '32rem',
-        '136': '34rem',
+        '160': '40rem',
       },
       boxShadow: {
         'startButton': '0 3px 0 #121212',
         'startButtonHover': '0 7px 0 #121212',
+        'inner': 'inset 0 1px 2px 0 rgb(0 0 0 / 0.07)',
+        'inner-small': 'inset 0 1px 2px 0 rgb(0 0 0 / 0.05)',
       }
     },
     fontFamily: {
