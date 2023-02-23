@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Circle from '../Figures/Circle';
 import Square from '../Figures/Square';
 import Triangle from '../Figures/Triangle';
 import useDidMountEffect from '../../hooks/useDidMountEffect';
+import getRandom from '../../utils/getRandom';
 
 function Game() {
   let [score, setScore] = useState(0);
   let [over, setOver] = useState(false);
 
+  let board = useRef(getRandom());
   let [hap, setHap] = useState([]);
   let [selected, setSelected] = useState([]);
 
@@ -38,48 +40,71 @@ function Game() {
   }
 
   useEffect(() => {
+    console.log(board)
+  }, []);
+
+  useEffect(() => {
     // setTimer()
   }, [score]);
 
   useDidMountEffect(() => {
-    console.log(1)
+    // console.log(1)
   }, [over]);
 
   const onClickHandler = (e) => {
-    console.log(e.currentTarget.getAttribute("data-index"))
+    console.log(board)
+
+    let current = e.currentTarget;
+    let currentNum = current.getAttribute("data-index");
+
+    if(current.classList.contains("selected")) {
+      setSelected(prev => prev.filter(num => num !== currentNum));
+    } else {
+      setSelected(prev => [...prev, currentNum]);
+    }
+    current.classList.toggle("selected");
+
+    // if(selected.length === 3) 
   }
 
   return (
     <div className="absolute inset-0 z-10 w-full h-full py-5 px-5 text-left break-keep bg-white dark:bg-dark-white">
+      {/* 타이머 */}
       <div className="relative w-full h-4 rounded-full overflow-hidden bg-dark-white dark:bg-black">
         <div className="absolute inset-0 bg-[#28c684]" id="bar"></div>
       </div>
 
       {/* 도형 */}
       <div className="grid grid-cols-3 grid-rows-3 my-5">
-        <Circle color="yellow"  bgColor="white" index="1" onClick={onClickHandler} />
-        <Triangle color="green"  bgColor="black" index="2" onClick={onClickHandler} />
-        <Circle color="blue"  bgColor="gray" index="3" onClick={onClickHandler} />
-        <Triangle color="yellow"  bgColor="white" index="4" onClick={onClickHandler} />
-        <Circle color="green"  bgColor="white" index="5" onClick={onClickHandler} />
-        <Circle color="blue" bgColor="black" index="6" onClick={onClickHandler} />
-        <Circle color="yellow"  bgColor="gray" index="7" onClick={onClickHandler} />
-        <Square color="green"  bgColor="white" index="8" onClick={onClickHandler} />
-        <Square color="blue"  bgColor="white" index="9" onClick={onClickHandler} />
+        {board.current.map((ele, idx) => {
+          let shape = ele[0] === "0" ? "square" : ele[0] === "1" ? "circle" : "triangle";
+          let color = ele[1] === "0" ? "yellow" : ele[1] === "1" ? "green" : "blue";
+          let bgColor = ele[2] === "0" ? "white" : ele[2] === "1" ? "black" : "gray";
+
+          if(shape === "square") {
+            return <Square color={color} bgColor={bgColor} index={idx} key={ele} onClick={onClickHandler} />
+          } else if(shape === "circle") {
+            return <Circle color={color} bgColor={bgColor} index={idx} key={ele} onClick={onClickHandler} />
+          } else {
+            return <Triangle color={color} bgColor={bgColor} index={idx} key={ele} onClick={onClickHandler} />
+          }
+        })}
       </div>
 
-      {/* 합 */}
+      {/* 찾은 합 목록 */}
       <div className="h-32"> 
         <span className="mr-5">1 2 3</span>
         <span className="mr-5">5 7 9</span>
       </div>
       
+      {/* 결 버튼 */}
       <button className="w-full text-center p-2 my-5 border rounded-full border-solid border-[#e2e8f0] bg-white transition-all	active:scale-[0.97]	shadow-inner-small">
         결
       </button>
 
+      {/* 점수 */}
       <div className="text-center text-3xl font-bold">
-        -3
+        {score}
       </div>
     </div>
   )
