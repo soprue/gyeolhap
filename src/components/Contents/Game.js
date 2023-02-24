@@ -4,6 +4,7 @@ import Square from '../Figures/Square';
 import Triangle from '../Figures/Triangle';
 import useDidMountEffect from '../../hooks/useDidMountEffect';
 import getRandom from '../../utils/getRandom';
+import getHap from '../../utils/getHap';
 
 function Game() {
   let [score, setScore] = useState(0);
@@ -40,7 +41,7 @@ function Game() {
   }
 
   useEffect(() => {
-    console.log(board)
+    setHap(getHap(board.current));
   }, []);
 
   useEffect(() => {
@@ -52,8 +53,6 @@ function Game() {
   }, [over]);
 
   const onClickHandler = (e) => {
-    console.log(board)
-
     let current = e.currentTarget;
     let currentNum = current.getAttribute("data-index");
 
