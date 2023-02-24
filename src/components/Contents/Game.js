@@ -5,6 +5,7 @@ import Triangle from '../Figures/Triangle';
 import useDidMountEffect from '../../hooks/useDidMountEffect';
 import getRandom from '../../utils/getRandom';
 import getHap from '../../utils/getHap';
+import { toast } from 'react-hot-toast';
 
 function Game() {
   let [score, setScore] = useState(0);
@@ -52,7 +53,7 @@ function Game() {
     // console.log(1)
   }, [over]);
 
-  const onClickHandler = (e) => {
+  const handleHapButtonClick = (e) => {
     let current = e.currentTarget;
     let currentNum = current.getAttribute("data-index");
 
@@ -63,7 +64,24 @@ function Game() {
     }
     current.classList.toggle("selected");
 
-    // if(selected.length === 3) 
+    if(selected.length === 3) {
+
+    }
+  }
+
+  const handleGyeolButtonClick = (e) => {
+    if(hap.length === 0) {
+      toast("결입니다. 3점을 얻었습니다.", {
+        duration: 1000,
+        icon: "⭕",
+      });
+    } else {
+      setScore(prev => prev - 1);
+      toast("결이 아닙니다. 1점을 잃었습니다.", {
+        duration: 1000,
+        icon: "❌",
+      });
+    }
   }
 
   return (
@@ -81,11 +99,11 @@ function Game() {
           let bgColor = ele[2] === "0" ? "white" : ele[2] === "1" ? "black" : "gray";
 
           if(shape === "square") {
-            return <Square color={color} bgColor={bgColor} index={idx} key={ele} onClick={onClickHandler} />
+            return <Square color={color} bgColor={bgColor} index={idx} key={ele} onClick={handleHapButtonClick} />
           } else if(shape === "circle") {
-            return <Circle color={color} bgColor={bgColor} index={idx} key={ele} onClick={onClickHandler} />
+            return <Circle color={color} bgColor={bgColor} index={idx} key={ele} onClick={handleHapButtonClick} />
           } else {
-            return <Triangle color={color} bgColor={bgColor} index={idx} key={ele} onClick={onClickHandler} />
+            return <Triangle color={color} bgColor={bgColor} index={idx} key={ele} onClick={handleHapButtonClick} />
           }
         })}
       </div>
@@ -97,7 +115,10 @@ function Game() {
       </div>
       
       {/* 결 버튼 */}
-      <button className="w-full text-center p-2 my-5 border rounded-full border-solid border-[#e2e8f0] bg-white transition-all	active:scale-[0.97]	shadow-inner-small">
+      <button
+        className="w-full text-center p-2 my-5 border rounded-full border-solid border-[#e2e8f0] bg-white transition-all	active:scale-[0.97]	shadow-inner-small"
+        onClick={handleGyeolButtonClick}
+      >
         결
       </button>
 

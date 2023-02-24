@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import Contents from './components/Contents';
 import Rule from './components/Rule';
 import ThemeButton from './components/ThemeButton';
@@ -35,6 +36,9 @@ function App() {
 
         <ThemeButton theme={theme} setTheme={setTheme} />
       </div>
+
+      
+      <Toaster />
     </div>
   );
 }
