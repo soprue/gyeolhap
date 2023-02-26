@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { toast } from 'react-hot-toast';
+
+import useDidMountEffect from '../../hooks/useDidMountEffect';
 import Circle from '../Figures/Circle';
 import Square from '../Figures/Square';
 import Triangle from '../Figures/Triangle';
-import useDidMountEffect from '../../hooks/useDidMountEffect';
 import getRandom from '../../utils/getRandom';
 import getHap from '../../utils/getHap';
-import { toast } from 'react-hot-toast';
+
+import { TIMER } from '../../constants/timer';
 
 function Game() {
   let [score, setScore] = useState(0);
@@ -21,33 +24,29 @@ function Game() {
   }, []);
 
   const setTimer = () => {
-    const fullTime = 20;
-    const warn = 10;
-    const almost = 5;
-
-    let currTime = fullTime;
+    let currTime = TIMER.FULL_TIME;
 
     const timer = setInterval(function() {
       --currTime;
 
-      let w = (currTime / fullTime) * 100;
+      let w = (currTime / TIMER.FULL_TIME) * 100;
       document.querySelector("#bar").style.width = w + "%";
 
       if (!currTime) {
         window.clearInterval(timer);
         setOver(true);
       } 
-      if(currTime === warn) {
+      if(currTime === TIMER.WARNING) {
         document.querySelector("#bar").style.backgroundColor = "#d0863a";
       }
-      if(currTime === almost) {
+      if(currTime === TIMER.WARNING) {
         document.querySelector("#bar").style.backgroundColor = "#d03a49";
       }
     }, 1000);
   }
 
   useEffect(() => {
-    // setTimer()
+    setTimer();
   }, [score]);
 
   useDidMountEffect(() => {
