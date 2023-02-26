@@ -74,6 +74,7 @@ function Game() {
           figures.forEach(function(figure) {
             figure.classList.remove("selected");
           });
+
           break;
         }
       }
@@ -94,11 +95,15 @@ function Game() {
 
   const handleGyeolButtonClick = (e) => {
     if(hap.length === 0) {
-      setScore(prev => prev - 3);
+      setScore(prev => prev + 3);
       toast("결입니다. 3점을 얻었습니다.", {
         duration: 1000,
         icon: "⭕",
       });
+
+      board.current = getRandom();
+      setHap(getHap(board.current));
+      setFoundHap([]);
     } else {
       setScore(prev => prev - 1);
       toast("결이 아닙니다. 1점을 잃었습니다.", {
