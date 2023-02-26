@@ -1,6 +1,6 @@
 const checkRequirement = (x, y, z) => {
-	if (x == y && y == z) return true;
-	if (x != y && y != z && z != x) return true;
+	if (x === y && y === z) return true;
+	if (x !== y && y !== z && z !== x) return true;
 	return false;
 }
 
