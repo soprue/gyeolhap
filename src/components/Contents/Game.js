@@ -14,6 +14,11 @@ function Game() {
   let board = useRef(getRandom());
   let [hap, setHap] = useState([]);
   let [selected, setSelected] = useState([]);
+  let [foundHap, setFoundHap] = useState([]);
+
+  useEffect(() => {
+    setHap(getHap(board.current));
+  }, []);
 
   const setTimer = () => {
     const fullTime = 20;
@@ -42,10 +47,6 @@ function Game() {
   }
 
   useEffect(() => {
-    setHap(getHap(board.current));
-  }, []);
-
-  useEffect(() => {
     // setTimer()
   }, [score]);
 
@@ -53,9 +54,35 @@ function Game() {
     // console.log(1)
   }, [over]);
 
+  useEffect(() => {
+    if(selected.length === 3) {
+      selected.sort((a, b) => a - b);
+
+      for(let element of hap) {
+        if(JSON.stringify(element) === JSON.stringify(selected)) {
+          setScore(prev => prev + 1);
+          setFoundHap(prev => [...prev, selected]);
+          setHap(prev => prev.filter(hap => JSON.stringify(hap) !== JSON.stringify(selected)));
+          setSelected([]);
+
+          toast("합입니다. 1점을 얻었습니다.", {
+            duration: 1000,
+            icon: "⭕",
+          });
+
+          let figures = document.querySelectorAll(".figure");
+          figures.forEach(function(figure) {
+            figure.classList.remove("selected");
+          });
+          break;
+        }
+      }
+    }
+  }, [selected]);
+
   const handleHapButtonClick = (e) => {
     let current = e.currentTarget;
-    let currentNum = current.getAttribute("data-index");
+    let currentNum = Number(current.getAttribute("data-index"));
 
     if(current.classList.contains("selected")) {
       setSelected(prev => prev.filter(num => num !== currentNum));
@@ -63,14 +90,11 @@ function Game() {
       setSelected(prev => [...prev, currentNum]);
     }
     current.classList.toggle("selected");
-
-    if(selected.length === 3) {
-
-    }
   }
 
   const handleGyeolButtonClick = (e) => {
     if(hap.length === 0) {
+      setScore(prev => prev - 3);
       toast("결입니다. 3점을 얻었습니다.", {
         duration: 1000,
         icon: "⭕",
@@ -99,19 +123,22 @@ function Game() {
           let bgColor = ele[2] === "0" ? "white" : ele[2] === "1" ? "black" : "gray";
 
           if(shape === "square") {
-            return <Square color={color} bgColor={bgColor} index={idx} key={ele} onClick={handleHapButtonClick} />
+            return <Square color={color} bgColor={bgColor} index={idx + 1} key={ele} onClick={handleHapButtonClick} />
           } else if(shape === "circle") {
-            return <Circle color={color} bgColor={bgColor} index={idx} key={ele} onClick={handleHapButtonClick} />
+            return <Circle color={color} bgColor={bgColor} index={idx + 1} key={ele} onClick={handleHapButtonClick} />
           } else {
-            return <Triangle color={color} bgColor={bgColor} index={idx} key={ele} onClick={handleHapButtonClick} />
+            return <Triangle color={color} bgColor={bgColor} index={idx + 1} key={ele} onClick={handleHapButtonClick} />
           }
         })}
       </div>
 
       {/* 찾은 합 목록 */}
       <div className="h-32"> 
-        <span className="mr-5">1 2 3</span>
-        <span className="mr-5">5 7 9</span>
+        {
+          foundHap.map(ele => {
+            return <span className="mr-5" key={ele}>{ele.join(" ")}</span>
+          })
+        }
       </div>
       
       {/* 결 버튼 */}

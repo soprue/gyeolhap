@@ -6,7 +6,7 @@ function Circle({size = 50, color, bgColor, index, onClick}) {
     let radius = size / 2;
 
     return (
-        <button className="p-5 m-1 shadow-inner float-left" style={{ backgroundColor: backColor }} data-index={index} onClick={onClick}>
+        <button className="figure p-5 m-1 shadow-inner float-left" style={{ backgroundColor: backColor }} data-index={index} onClick={onClick}>
             <svg width={size} height={size} className="my-0 mx-auto">
                 <circle cx={radius} cy={radius} r={radius} fill={fillColor} />
             </svg>
