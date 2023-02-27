@@ -32,7 +32,7 @@ function Game() {
     let w = (time / TIMER.FULL_TIME) * 100;
     document.querySelector("#bar").style.width = w + "%";
 
-    if (!time) {
+    if (time <= 0) {
       clearInterval(interval.current);
       setOver(true);
     } 
@@ -53,10 +53,8 @@ function Game() {
       document.querySelector("#bar").style.backgroundColor = "#28c684";
     }
 
-    setTimeout(() => {
-      interval.current = setInterval(function() {
-        setTime(prev => prev - 1);
-      }, 1000);
+    interval.current = setInterval(function() {
+      setTime(prev => prev - 1);
     }, 1000);
   }
 
