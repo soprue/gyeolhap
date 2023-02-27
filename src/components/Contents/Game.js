@@ -22,11 +22,12 @@ function Game() {
   let [selected, setSelected] = useState([]);
   let [foundHap, setFoundHap] = useState([]);
 
-  // 
+  // 게임 시작 시 주어진 보드에서 합인 조합 찾기
   useEffect(() => {
     setHap(getHap(board.current));
   }, []);
 
+  // 타이머
   useEffect(() => {
     let w = (time / TIMER.FULL_TIME) * 100;
     document.querySelector("#bar").style.width = w + "%";
@@ -63,10 +64,12 @@ function Game() {
     setTimer();
   }, [score]);
 
+  // 게임 오버 시
   useDidMountEffect(() => {
     // console.log(1)
   }, [over]);
 
+  // 선택한 조합이 합 맞는지 확인
   useEffect(() => {
     if(selected.length === 3) {
       let flag = false;
@@ -118,6 +121,7 @@ function Game() {
     current.classList.toggle("selected");
   }
 
+  // 결 버튼 클릭 시 결인지 판단
   const handleGyeolButtonClick = (e) => {
     if(hap.length === 0) {
       setScore(prev => prev + 3);
