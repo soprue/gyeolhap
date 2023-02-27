@@ -14,34 +14,48 @@ function Game() {
   let [score, setScore] = useState(0);
   let [over, setOver] = useState(false);
 
+  const interval = useRef();
+  const [time, setTime] = useState(TIMER.FULL_TIME);
+
   let board = useRef(getRandom());
   let [hap, setHap] = useState([]);
   let [selected, setSelected] = useState([]);
   let [foundHap, setFoundHap] = useState([]);
 
+  // 
   useEffect(() => {
     setHap(getHap(board.current));
   }, []);
 
+  useEffect(() => {
+    let w = (time / TIMER.FULL_TIME) * 100;
+    document.querySelector("#bar").style.width = w + "%";
+
+    if (!time) {
+      clearInterval(interval.current);
+      setOver(true);
+    } 
+    if(time === TIMER.WARNING) {
+      document.querySelector("#bar").style.backgroundColor = "#d0863a";
+    }
+    if(time === TIMER.WARNING) {
+      document.querySelector("#bar").style.backgroundColor = "#d03a49";
+    }
+  }, [time]);
+
   const setTimer = () => {
-    let currTime = TIMER.FULL_TIME;
+    if (interval.current) {
+      clearInterval(interval.current);
+      interval.current = null;
 
-    const timer = setInterval(function() {
-      --currTime;
+      setTime(TIMER.FULL_TIME);
+      document.querySelector("#bar").style.backgroundColor = "#28c684";
+    }
 
-      let w = (currTime / TIMER.FULL_TIME) * 100;
-      document.querySelector("#bar").style.width = w + "%";
-
-      if (!currTime) {
-        window.clearInterval(timer);
-        setOver(true);
-      } 
-      if(currTime === TIMER.WARNING) {
-        document.querySelector("#bar").style.backgroundColor = "#d0863a";
-      }
-      if(currTime === TIMER.WARNING) {
-        document.querySelector("#bar").style.backgroundColor = "#d03a49";
-      }
+    setTimeout(() => {
+      interval.current = setInterval(function() {
+        setTime(prev => prev - 1);
+      }, 1000);
     }, 1000);
   }
 
@@ -55,28 +69,40 @@ function Game() {
 
   useEffect(() => {
     if(selected.length === 3) {
+      let flag = false;
       selected.sort((a, b) => a - b);
 
       for(let element of hap) {
         if(JSON.stringify(element) === JSON.stringify(selected)) {
-          setScore(prev => prev + 1);
-          setFoundHap(prev => [...prev, selected]);
-          setHap(prev => prev.filter(hap => JSON.stringify(hap) !== JSON.stringify(selected)));
-          setSelected([]);
-
-          toast("합입니다. 1점을 얻었습니다.", {
-            duration: 1000,
-            icon: "⭕",
-          });
-
-          let figures = document.querySelectorAll(".figure");
-          figures.forEach(function(figure) {
-            figure.classList.remove("selected");
-          });
-
+          flag = true;
           break;
         }
       }
+
+      if(flag) {
+        setScore(prev => prev + 1);
+        setFoundHap(prev => [...prev, selected]);
+        setHap(prev => prev.filter(hap => JSON.stringify(hap) !== JSON.stringify(selected)));
+
+        toast("합입니다. 1점을 얻었습니다.", {
+          duration: 1000,
+          icon: "⭕",
+        });
+      } else {
+        setScore(prev => prev - 1);
+        toast("합이 아닙니다. 1점을 잃었습니다.", {
+          duration: 1000,
+          icon: "❌",
+        });
+      }
+      
+      setSelected([]);
+      let figures = document.querySelectorAll(".figure");
+      figures.forEach(function(figure) {
+        figure.classList.remove("selected");
+      });
+
+      setTimer();
     }
   }, [selected]);
 
@@ -110,7 +136,10 @@ function Game() {
         icon: "❌",
       });
     }
+
+    setTimer();
   }
+  
 
   return (
     <div className="absolute inset-0 z-10 w-full h-full py-5 px-5 text-left break-keep bg-white dark:bg-dark-white">
