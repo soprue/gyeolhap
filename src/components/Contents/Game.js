@@ -2,14 +2,15 @@ import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast';
 
 import useDidMountEffect from '../../hooks/useDidMountEffect';
-import Circle from '../Figures/Circle';
-import Square from '../Figures/Square';
-import Triangle from '../Figures/Triangle';
 import getRandom from '../../utils/getRandom';
 import getHap from '../../utils/getHap';
 
-import { TIMER } from '../../constants/timer';
+import Circle from '../Figures/Circle';
+import Square from '../Figures/Square';
+import Triangle from '../Figures/Triangle';
 import Modal from '../Modals/Modal';
+
+import { TIMER } from '../../constants/timer';
 
 function Game() {
   let [score, setScore] = useState(0);
@@ -65,7 +66,14 @@ function Game() {
 
   // 게임 오버 시
   useDidMountEffect(() => {
-    setOver(true);
+    if(!over) {
+      setScore(0);
+      setTime(TIMER.FULL_TIME);
+      board.current = getRandom();
+      setHap(getHap(board.current));
+      setFoundHap([]);
+      setSelected([]);
+    }
   }, [over]);
 
   // 선택한 조합이 합 맞는지 확인

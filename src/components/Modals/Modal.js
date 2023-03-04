@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import useDidMountEffect from '../../hooks/useDidMountEffect';
 
 function Modal({ score, over, setOver }) {
-  useDidMountEffect(() => {
-    if(over) document.querySelector("#modal").style.display = "block"
-    else document.querySelector("#modal").style.display = "none"
+  useEffect(() => {
+    if(over) document.querySelector("#modal").style.display = "block";
+    else document.querySelector("#modal").style.display = "none";
   }, [over]);
 
   return (
@@ -16,7 +16,7 @@ function Modal({ score, over, setOver }) {
 
             <button
               className="block w-full text-center p-2 mt-10 mb-0 mx-auto border rounded-full border-solid border-[#e2e8f0] bg-white transition-all	active:scale-[0.97]	shadow-inner-small"
-              onClick={() => setOver(!over)}
+              onClick={() => setOver(false)}
             >
               다시 하기
             </button>
@@ -25,4 +25,4 @@ function Modal({ score, over, setOver }) {
   )
 }
 
-export default Modal
+export default React.memo(Modal);
