@@ -9,6 +9,7 @@ import getRandom from '../../utils/getRandom';
 import getHap from '../../utils/getHap';
 
 import { TIMER } from '../../constants/timer';
+import Modal from '../Modals/Modal';
 
 function Game() {
   let [score, setScore] = useState(0);
@@ -64,7 +65,7 @@ function Game() {
 
   // 게임 오버 시
   useDidMountEffect(() => {
-    // console.log(1)
+    setOver(true);
   }, [over]);
 
   // 선택한 조합이 합 맞는지 확인
@@ -145,8 +146,10 @@ function Game() {
 
   return (
     <div className="absolute inset-0 z-10 w-full h-full py-5 px-5 text-left break-keep bg-white dark:bg-dark-white">
+      <Modal score={score} over={over} setOver={setOver} />
+
       {/* 타이머 */}
-      <div className="relative w-full h-4 rounded-full overflow-hidden bg-dark-white dark:bg-black">
+      <div className="relative w-full h-4 rounded-full overflow-hidden bg-dark-white dark:bg-white">
         <div className="absolute inset-0 bg-[#28c684]" id="bar"></div>
       </div>
 
