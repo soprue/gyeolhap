@@ -1,8 +1,8 @@
 const checkRequirement = (x, y, z) => {
-	if (x === y && y === z) return true;
-	if (x !== y && y !== z && z !== x) return true;
-	return false;
-}
+    if (x === y && y === z) return true;
+    if (x !== y && y !== z && z !== x) return true;
+    return false;
+};
 
 const isHap = (x, y, z) => {
     let shape = checkRequirement(x[0], y[0], z[0]);
@@ -10,6 +10,6 @@ const isHap = (x, y, z) => {
     let bgColor = checkRequirement(x[2], y[2], z[2]);
 
     return shape && color && bgColor;
-}
+};
 
-export default isHap
+export default isHap;

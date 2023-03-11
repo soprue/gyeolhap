@@ -1,28 +1,34 @@
-import React, { useEffect } from 'react'
-import useDidMountEffect from '../../hooks/useDidMountEffect';
+import React, { useEffect } from "react";
 
 function Modal({ score, over, setOver }) {
-  useEffect(() => {
-    if(over) document.querySelector("#modal").style.display = "block";
-    else document.querySelector("#modal").style.display = "none";
-  }, [over]);
+    useEffect(() => {
+        if (over) document.querySelector("#modal").style.display = "block";
+        else document.querySelector("#modal").style.display = "none";
+    }, [over]);
 
-  return (
-    <div id="modal" className="hidden fixed inset-0 z-10 w-full h-full bg-black/[.4]">
-        <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-96 rounded-3xl py-10 px-5 m-auto shadow-md text-center bg-white dark:bg-dark-white">
-            <h1 className="mb-2.5 text-3xl font-bold">게임 종료</h1>
+    return (
+        <div
+            id="modal"
+            className="fixed inset-0 z-10 hidden h-full w-full bg-black/[.6]"
+        >
+            <div className="absolute top-1/2 left-1/2 m-auto w-72 translate-x-[-50%] translate-y-[-50%] rounded-3xl bg-white py-8 px-5 text-center shadow-md dark:bg-dark-white sm:w-96 sm:py-10">
+                <h1 className="mb-2.5 text-xl font-bold sm:text-3xl">
+                    게임 종료
+                </h1>
 
-            <p className="text-lg">점수: <span className="font-bold">{score}</span></p>
+                <p className="text-sm sm:text-base">
+                    점수: <span className="font-bold">{score}</span>
+                </p>
 
-            <button
-              className="block w-full text-center p-2 mt-10 mb-0 mx-auto border rounded-full border-solid border-[#e2e8f0] bg-white transition-all	active:scale-[0.97]	shadow-inner-small"
-              onClick={() => setOver(false)}
-            >
-              다시 하기
-            </button>
+                <button
+                    className="mx-auto mt-8 mb-0 block w-full rounded-full border border-solid border-[#e2e8f0] bg-white p-2 text-center text-sm shadow-inner-small transition-all active:scale-[0.97]	sm:mt-10	sm:text-base"
+                    onClick={() => setOver(false)}
+                >
+                    다시 하기
+                </button>
+            </div>
         </div>
-    </div>
-  )
+    );
 }
 
 export default React.memo(Modal);
