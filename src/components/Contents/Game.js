@@ -41,7 +41,7 @@ function Game() {
     if(time === TIMER.WARNING) {
       document.querySelector("#bar").style.backgroundColor = "#d0863a";
     }
-    if(time === TIMER.WARNING) {
+    if(time === TIMER.ALMOST) {
       document.querySelector("#bar").style.backgroundColor = "#d03a49";
     }
   }, [time]);
@@ -67,12 +67,12 @@ function Game() {
   // 게임 오버 시
   useDidMountEffect(() => {
     if(!over) {
-      setScore(0);
-      setTime(TIMER.FULL_TIME);
       board.current = getRandom();
       setHap(getHap(board.current));
       setFoundHap([]);
       setSelected([]);
+      setScore(0);
+      setTimer();
     }
   }, [over]);
 
