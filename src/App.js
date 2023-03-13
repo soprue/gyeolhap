@@ -21,7 +21,7 @@ function App() {
                 결! 합! 게임
             </p>
 
-            <div className="relative mx-auto my-0 h-112 w-80 overflow-hidden rounded-3xl bg-white shadow-md dark:bg-dark-white sm:h-136 sm:w-104 2xl:h-160 2xl:w-112">
+            <div className="relative mx-auto my-0 h-112 w-80 overflow-hidden rounded-3xl bg-white shadow-md dark:bg-dark-white sm:h-144 sm:w-104 2xl:h-160 2xl:w-112">
                 <Contents />
                 {rule && <Rule />}
             </div>

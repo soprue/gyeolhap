@@ -181,7 +181,7 @@ function Game() {
             </div>
 
             {/* 도형 */}
-            <div className="my-4 grid grid-cols-3 grid-rows-3 sm:my-5">
+            <div className="my-4 grid grid-cols-3 grid-rows-3 2xl:my-5">
                 {board.current.map((ele, idx) => {
                     let shape =
                         ele[0] === "0"
@@ -253,7 +253,7 @@ function Game() {
 
             {/* 결 버튼 */}
             <button
-                className="my-3 w-full rounded-full border border-solid border-[#e2e8f0] bg-white p-2 text-center text-base shadow-inner-small transition-all active:scale-[0.97] sm:my-5"
+                className="my-3 w-full rounded-full border border-solid border-[#e2e8f0] bg-white p-2 text-center text-base shadow-inner-small transition-all active:scale-[0.97] 2xl:my-5"
                 onClick={handleGyeolButtonClick}
             >
                 결
