@@ -79,12 +79,18 @@ function Game() {
     // 선택한 조합이 합 맞는지 확인
     useEffect(() => {
         if (selected.length === 3) {
-            let flag = false;
+            let flag = 1;
             selected.sort((a, b) => a - b);
 
             for (let element of hap) {
                 if (JSON.stringify(element) === JSON.stringify(selected)) {
-                    flag = true;
+                    flag = -1;
+                    break;
+                }
+            }
+            for (let element of foundHap) {
+                if (JSON.stringify(element) === JSON.stringify(selected)) {
+                    flag = 0;
                     break;
                 }
             }
@@ -105,10 +111,18 @@ function Game() {
                 });
             } else {
                 setScore((prev) => prev - 1);
-                toast("합이 아닙니다. 1점을 잃었습니다.", {
-                    duration: 1000,
-                    icon: "❌",
-                });
+                if (flag == -1) {
+                    toast("합이 아닙니다. 1점을 잃었습니다.", {
+                        duration: 1000,
+                        icon: "❌",
+                    });
+                }
+                if (flag == 0) {
+                    toast("이미 선택한 합 조합입니다.", {
+                        duration: 1000,
+                        icon: "❌",
+                    });
+                }
             }
 
             setSelected([]);
@@ -222,7 +236,7 @@ function Game() {
             </div>
 
             {/* 찾은 합 목록 */}
-            <div className="h-24">
+            <div className="h-12 sm:h-24 2xl:h-32">
                 {foundHap.map((ele) => {
                     return (
                         <span className="mr-5" key={ele}>
@@ -234,7 +248,7 @@ function Game() {
 
             {/* 결 버튼 */}
             <button
-                className="my-5 w-full rounded-full border border-solid border-[#e2e8f0] bg-white p-2 text-center shadow-inner-small	transition-all	active:scale-[0.97]"
+                className="my-5 w-full rounded-full border border-solid border-[#e2e8f0] bg-white p-2 text-center shadow-inner-small transition-all	active:scale-[0.97]"
                 onClick={handleGyeolButtonClick}
             >
                 결
