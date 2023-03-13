@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
+import { isMobile } from "react-device-detect";
 
 import useDidMountEffect from "../../hooks/useDidMountEffect";
 import getRandom from "../../utils/getRandom";
@@ -200,10 +201,12 @@ function Game() {
                             : ele[2] === "1"
                             ? "black"
                             : "gray";
+                    let size = isMobile ? 30 : 50;
 
                     if (shape === "square") {
                         return (
                             <Square
+                                size={size}
                                 color={color}
                                 bgColor={bgColor}
                                 index={idx + 1}
@@ -214,6 +217,7 @@ function Game() {
                     } else if (shape === "circle") {
                         return (
                             <Circle
+                                size={size}
                                 color={color}
                                 bgColor={bgColor}
                                 index={idx + 1}
@@ -224,6 +228,7 @@ function Game() {
                     } else {
                         return (
                             <Triangle
+                                size={size}
                                 color={color}
                                 bgColor={bgColor}
                                 index={idx + 1}
@@ -248,14 +253,16 @@ function Game() {
 
             {/* 결 버튼 */}
             <button
-                className="my-5 w-full rounded-full border border-solid border-[#e2e8f0] bg-white p-2 text-center shadow-inner-small transition-all	active:scale-[0.97]"
+                className="my-5 w-full rounded-full border border-solid border-[#e2e8f0] bg-white p-2 text-center text-base shadow-inner-small transition-all	active:scale-[0.97]"
                 onClick={handleGyeolButtonClick}
             >
                 결
             </button>
 
             {/* 점수 */}
-            <div className="text-center text-3xl font-bold">{score}</div>
+            <div className="text-center text-2xl font-bold sm:text-3xl">
+                {score}
+            </div>
         </div>
     );
 }
