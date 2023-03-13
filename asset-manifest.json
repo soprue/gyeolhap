@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/gyeolhap/static/css/main.cd391832.css",
-    "main.js": "/gyeolhap/static/js/main.fc4a5e90.js",
+    "main.css": "/gyeolhap/static/css/main.60ca49ed.css",
+    "main.js": "/gyeolhap/static/js/main.c8858583.js",
     "static/js/787.b5fcb712.chunk.js": "/gyeolhap/static/js/787.b5fcb712.chunk.js",
     "index.html": "/gyeolhap/index.html",
-    "main.cd391832.css.map": "/gyeolhap/static/css/main.cd391832.css.map",
-    "main.fc4a5e90.js.map": "/gyeolhap/static/js/main.fc4a5e90.js.map",
+    "main.60ca49ed.css.map": "/gyeolhap/static/css/main.60ca49ed.css.map",
+    "main.c8858583.js.map": "/gyeolhap/static/js/main.c8858583.js.map",
     "787.b5fcb712.chunk.js.map": "/gyeolhap/static/js/787.b5fcb712.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cd391832.css",
-    "static/js/main.fc4a5e90.js"
+    "static/css/main.60ca49ed.css",
+    "static/js/main.c8858583.js"
   ]
 }
