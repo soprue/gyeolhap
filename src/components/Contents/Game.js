@@ -222,7 +222,7 @@ function Game() {
             </div>
 
             {/* 찾은 합 목록 */}
-            <div className="h-32">
+            <div className="h-24">
                 {foundHap.map((ele) => {
                     return (
                         <span className="mr-5" key={ele}>
