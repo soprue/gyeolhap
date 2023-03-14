@@ -32,3 +32,4 @@
 -   React (react-device-detect, react-hot-toast)
 -   JavaScript
 -   Tailwind CSS
+-   gh-pages
