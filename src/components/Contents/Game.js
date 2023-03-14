@@ -80,23 +80,25 @@ function Game() {
     // 선택한 조합이 합 맞는지 확인
     useEffect(() => {
         if (selected.length === 3) {
-            let flag = 1;
+            let flag = "incorrect";
             selected.sort((a, b) => a - b);
 
+            console.log(selected);
+            console.log(hap);
             for (let element of hap) {
                 if (JSON.stringify(element) === JSON.stringify(selected)) {
-                    flag = -1;
+                    flag = "correct";
                     break;
                 }
             }
             for (let element of foundHap) {
                 if (JSON.stringify(element) === JSON.stringify(selected)) {
-                    flag = 0;
+                    flag = "already";
                     break;
                 }
             }
 
-            if (flag) {
+            if (flag == "correct") {
                 setScore((prev) => prev + 1);
                 setFoundHap((prev) => [...prev, selected]);
                 setHap((prev) =>
@@ -112,13 +114,13 @@ function Game() {
                 });
             } else {
                 setScore((prev) => prev - 1);
-                if (flag == -1) {
+                if (flag == "incorrect") {
                     toast("합이 아닙니다. 1점을 잃었습니다.", {
                         duration: 1000,
                         icon: "❌",
                     });
                 }
-                if (flag == 0) {
+                if (flag == "already") {
                     toast("이미 선택한 합 조합입니다.", {
                         duration: 1000,
                         icon: "❌",
