@@ -8,9 +8,8 @@
 
 <br>
 
-## 배포 주소
-
-> https://soprue.github.io/gyeolhap/
+> 배포 주소： https://soprue.github.io/gyeolhap/  
+> 벨로그 주소： https://velog.io/@aborrencce/series/gyeolhap
 
 <br>
 
