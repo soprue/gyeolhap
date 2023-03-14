@@ -83,8 +83,6 @@ function Game() {
             let flag = "incorrect";
             selected.sort((a, b) => a - b);
 
-            console.log(selected);
-            console.log(hap);
             for (let element of hap) {
                 if (JSON.stringify(element) === JSON.stringify(selected)) {
                     flag = "correct";
